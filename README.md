@@ -1,0 +1,1 @@
+This project was created to incentivize my special needs sister to take more walks. The physical/arduino part works by uploading map points when she leaves and returns to the house. The points are uploaded to a fastapi server which generates reports which are automatically printed that include a map and her favorite photos.
