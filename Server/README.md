@@ -1,0 +1,1 @@
+A simple FastAPI app that takes in location points and uploads them to Traccar and uses Reportlab along with OpenStreetMaps to generate a pdf with a map and photos from an Immich album that will be printed to incentivize my special needs sister to take more walks.

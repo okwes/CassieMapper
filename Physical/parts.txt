@@ -1,0 +1,4 @@
+Battery holder, body, and lid should be printed with PLA or a material with similar mechanical properties. The wrapper should be printed with tpu and will hold the enclosure parts together.
+
+dev board: https://www.seeedstudio.com/Seeed-XIAO-ESP32C3-p-5431.html // any xiao esp32 dev board will work
+GNSS Module: https://www.seeedstudio.com/L76K-GNSS-Module-for-Seeed-Studio-XIAO-p-5864.html

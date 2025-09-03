@@ -1,0 +1,29 @@
+[project]
+name = "server"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Wesley Smith",email = "wes3161@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4"
+dependencies = [
+    "py-staticmaps (>=0.4.0,<0.5.0)",
+    "osmnx (>=2.0.5,<3.0.0)",
+    "svgwrite (>=1.4.3,<2.0.0)",
+    "reportlab (>=4.4.2,<5.0.0)",
+    "svglib (>=1.5.1,<2.0.0)",
+    "pyipp (>=0.17.2,<0.18.0)",
+    "pycups (>=2.0.4,<3.0.0)",
+    "fastapi[standard] (>=0.116.1,<0.117.0)",
+    "black (>=25.1.0,<26.0.0)",
+    "vulture (>=2.14,<3.0)"
+]
+
+[tool.poetry]
+packages = [{include = "server", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

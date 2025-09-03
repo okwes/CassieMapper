@@ -1,0 +1,16 @@
+services:
+  pycups_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/cups.sock:/var/run/cups.sock  # Mount CUPS socket
+      - /etc/cups:/etc/cups:ro  # Mount CUPS configuration
+    network_mode: host # required for CUPS
+    environment:
+      IMMICH_API_ENDPOINT: "immich.example.com/api"
+      IMMICH_API_KEY: "high entropy string"
+      IMMICH_ALBUM_ID: "high entropy string"
+      CUPS_PRINTER_NAME: "view in localhost:631 for most systems"
+      TRACCAR_SERVER: "traccar.example.com"
+    restart: unless-stopped

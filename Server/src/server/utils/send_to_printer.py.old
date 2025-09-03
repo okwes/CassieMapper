@@ -1,0 +1,68 @@
+import asyncio
+
+from pyipp import IPP
+from pyipp.enums import IppOperation
+
+# Based on some code from the pyipp docs. My printer does not seem to be properly supported and the project is very alpha so using cups socket was chosen
+
+PRINTER = "ipps://192.168.1.77/"
+async def print_pdf() -> None:
+    """Show example of printing via IPP print server."""
+    pdf_file = "temp/page_gen.pdf"
+    with open(pdf_file, "rb") as f:  # noqa: PTH123, ASYNC230
+        content = f.read()
+
+    async with IPP(PRINTER) as ipp:
+        response = await ipp.execute(
+            IppOperation.PRINT_JOB,
+            {
+                "operation-attributes-tag": {
+                    "requesting-user-name": "Cassie Auto Print",
+                    "job-name": "Location Report",
+                    "document-format": "application/pdf",
+                },
+                "data": content,
+            },
+        )
+
+        print(response)
+
+async def debug() -> None:
+    """Show example of connecting to your IPP print server."""
+    async with IPP(PRINTER) as ipp:
+        response = await ipp.raw(
+            IppOperation.GET_PRINTER_ATTRIBUTES,
+            {
+                "version": (2, 0),  # try (1, 1) for older devices
+                "operation-attributes-tag": {
+                    "requested-attributes": [
+                        "printer-device-id",
+                        "printer-name",
+                        "printer-type",
+                        "printer-location",
+                        "printer-info",
+                        "printer-make-and-model",
+                        "printer-state",
+                        "printer-state-message",
+                        "printer-state-reasons",
+                        "printer-supply",
+                        "printer-up-time",
+                        "printer-uri-supported",
+                        "device-uri",
+                        "printer-is-shared",
+                        "printer-more-info",
+                        "printer-firmware-string-version",
+                        "marker-colors",
+                        "marker-high-levels",
+                        "marker-levels",
+                        "marker-low-levels",
+                        "marker-names",
+                        "marker-types",
+                    ],
+                },
+            },
+        )
+
+        with open("temp/printer-attributes.bin", "wb") as file:  # noqa: PTH123, ASYNC230
+            file.write(response)
+            file.close()
